@@ -9,7 +9,10 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "buildImage:prod": "docker build --build-arg NODE_ENV=production -t my-blog:latest -f Dockerfile.prod .",
+    "compose:up:dev": "docker compose --env-file .env.dev -f compose.yml -f compose.dev.yml up -d --build",
+    "compose:up:prod": "docker compose --env-file .env.prod -f compose.yml -f compose.prod.yml up -d --build"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.1.0",
@@ -18,6 +21,7 @@
     "better-sqlite3": "11.3.0",
     "fs-extra": "^10.0.0",
     "mime-types": "^2.1.27",
+    "pg": "^8.13.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",

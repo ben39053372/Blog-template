@@ -1,0 +1,31 @@
+name: my-blog-cms-dev
+services:
+  strapi:
+    container_name: strapi-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: strapi-dev:latest
+    ports:
+      - "${PORT}:${PORT}"
+    env_file: .env
+    networks:
+      - strapi-dev
+
+  strapiDB:
+    env_file:
+      - .env.dev
+    environment:
+      PGPORT: "${DATABASE_PORT}"
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    networks:
+      - strapi-dev
+
+volumes:
+  strapi-dev-data:
+    driver: bridge
+
+networks:
+  strapi-dev:
+    driver: bridge
