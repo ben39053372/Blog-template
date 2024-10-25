@@ -4,15 +4,17 @@
   "info": {
     "singularName": "information",
     "pluralName": "informations",
-    "displayName": "Information"
+    "displayName": "Information",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
+    "name": {
+      "type": "string",
+      "required": true
     },
     "introduction": {
       "type": "text"

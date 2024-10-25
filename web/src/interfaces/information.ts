@@ -1,4 +1,4 @@
 export type Information = {
-  title: string;
+  name: string;
   introduction: string;
 };
