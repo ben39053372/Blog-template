@@ -2,6 +2,9 @@ import { Post } from "@/interfaces/post";
 import fs from "fs";
 import matter from "gray-matter";
 import { join } from "path";
+import { strapiClient } from "./strapi";
+import { StrapiSingleTypesResponse } from "@/interfaces/strapi";
+import { Information } from "@/interfaces/information";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -25,4 +28,11 @@ export function getAllPosts(): Post[] {
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
+}
+
+export async function getBlogInformation() {
+  const infos = await strapiClient.get<StrapiSingleTypesResponse<Information>>(
+    "/information"
+  );
+  return infos.data;
 }
