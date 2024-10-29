@@ -12,8 +12,6 @@ export default async function Post(props: Params) {
   const result = await getArticleBySlug(params.slug);
   const post = result.data[0]
 
-  console.log(post)
-
   if (!post) {
     return notFound();
   }

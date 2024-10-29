@@ -6,7 +6,6 @@ import { getAllArticles } from "@/lib/api";
 
 export default async function Index() {
   const allArticles = await getAllArticles();
-  console.log(allArticles.data[1])
 
   const heroPost = allArticles.data[0];
 

@@ -10,7 +10,6 @@ type Props = {
 };
 
 const CoverImage = ({ file, slug, title }: Props) => {
-  console.log(file)
   if (!file) return null
   const image = (
     <Image
