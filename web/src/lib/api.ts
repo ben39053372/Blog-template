@@ -37,7 +37,7 @@ export function getPostBySlug(slug: string) {
 export const getArticleBySlug = async (slug: string) => {
   const articles = await strapiClient.get<
     StrapiCollectionTypesResponse<ArticlePopulated>
-  >(`/articles?populate=*&filters[slug][$eq]=${slug}`);
+  >(`/articles?pLevel&filters[slug][$eq]=${slug}`);
   return articles.data;
 };
 
