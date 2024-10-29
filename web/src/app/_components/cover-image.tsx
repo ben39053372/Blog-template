@@ -1,23 +1,26 @@
 import cn from "classnames";
 import Link from "next/link";
 import Image from "next/image";
+import { MediaFile } from "@/interfaces/file";
 
 type Props = {
+  file?: MediaFile;
+  slug: string;
   title: string;
-  src: string;
-  slug?: string;
 };
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({ file, slug, title }: Props) => {
+  if (!file) return null
   const image = (
     <Image
-      src={src}
-      alt={`Cover Image for ${title}`}
+      alt={file?.alternativeText || ""}
+      src={`${process.env.STRAPI_MEDIA_URL}${file?.url}`}
+      width={file?.width}
+      height={file?.height}
       className={cn("shadow-sm w-full", {
         "hover:shadow-lg transition-shadow duration-200": slug,
       })}
-      width={1300}
-      height={630}
+      unoptimized={process.env.NODE_ENV === "development" ? true : false}
     />
   );
   return (
