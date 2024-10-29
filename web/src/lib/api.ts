@@ -8,7 +8,7 @@ import {
   StrapiSingleTypesResponse,
 } from "@/interfaces/strapi";
 import { Information } from "@/interfaces/information";
-import { Article } from "@/interfaces/article";
+import { Article, ArticlePopulated } from "@/interfaces/article";
 
 const postsDirectory = join(process.cwd(), "_posts");
 
@@ -33,6 +33,13 @@ export function getPostBySlug(slug: string) {
 //     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
 //   return posts;
 // }
+
+export const getArticleBySlug = async (slug: string) => {
+  const articles = await strapiClient.get<
+    StrapiCollectionTypesResponse<ArticlePopulated>
+  >(`/articles?populate=*&filters[slug][$eq]=${slug}`);
+  return articles.data;
+};
 
 export async function getAllArticles() {
   const articles = await strapiClient.get<

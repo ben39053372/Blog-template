@@ -20,9 +20,7 @@ export default async function Index() {
           title={heroPost.title}
           coverImage={heroPost.cover || ""}
           date={heroPost.createdAt}
-          author={heroPost.author}
           slug={heroPost.slug}
-          excerpt={heroPost.excerpt}
         />
         {morePosts.length > 0 && <MoreStories posts={morePosts} />}
       </Container>
