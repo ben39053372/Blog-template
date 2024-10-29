@@ -1,9 +1,9 @@
 import { StrapiBaseResponse } from "@/interfaces/strapi";
 import { PostPreview } from "./post-preview";
-import { Article } from "@/interfaces/article";
+import { Article, ArticlePopulated } from "@/interfaces/article";
 
 type Props = {
-  posts: StrapiBaseResponse<Article>[];
+  posts: StrapiBaseResponse<ArticlePopulated>[];
 };
 
 export function MoreStories({ posts }: Props) {
@@ -17,7 +17,7 @@ export function MoreStories({ posts }: Props) {
           <PostPreview
             key={post.slug}
             title={post.title}
-            coverImage={post.cover || ""}
+            coverFile={post.cover}
             date={post.publishedAt}
             slug={post.slug}
           />

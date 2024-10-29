@@ -1,3 +1,4 @@
+import { MediaFile } from "@/interfaces/file";
 import Avatar from "./avatar";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
@@ -6,17 +7,18 @@ import { type Author } from "@/interfaces/author";
 
 type Props = {
   title: string;
-  coverImage: string;
+  coverFile?: MediaFile;
   date: string;
   author: Author;
+  slug: string;
 };
 
-export function PostHeader({ title, coverImage, date, author }: Props) {
+export function PostHeader({ title, coverFile, date, author, slug }: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      {coverImage && <div className="mb-8 md:mb-16 sm:mx-0">
-        <CoverImage title={title} src={coverImage} />
+      {coverFile && <div className="mb-8 md:mb-16 sm:mx-0">
+        <CoverImage title={title} file={coverFile} slug={slug} />
       </div>}
       <div className="max-w-2xl mx-auto">
         <div className="mb-6 text-lg">

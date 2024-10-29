@@ -2,11 +2,11 @@ import Container from "@/app/_components/container";
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
-// import { getAllPosts } from "@/lib/api";
 import { getAllArticles } from "@/lib/api";
 
 export default async function Index() {
   const allArticles = await getAllArticles();
+  console.log(allArticles.data[1])
 
   const heroPost = allArticles.data[0];
 
@@ -18,7 +18,7 @@ export default async function Index() {
         <Intro />
         <HeroPost
           title={heroPost.title}
-          coverImage={heroPost.cover || ""}
+          coverFile={heroPost.cover}
           date={heroPost.createdAt}
           slug={heroPost.slug}
         />
